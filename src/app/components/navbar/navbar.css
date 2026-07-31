@@ -1,0 +1,121 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-lg);
+  padding: var(--space-lg) var(--space-md);
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* ===== Logo ===== */
+.navbar__logo a {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  text-decoration: none;
+  color: var(--color-text);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-lg);
+}
+
+.navbar__logo img {
+  height: 32px;
+}
+
+/* ===== Search ===== */
+.navbar__search {
+  flex: 1;
+  width: 100%;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  background: var(--color-bg-muted);
+  border-radius: var(--radius-md);
+}
+
+.navbar__search input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  font-family: var(--font-family-base);
+  padding: var(--space-md);
+}
+
+.navbar__search input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.navbar__search button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  font-size: var(--font-size-base);
+}
+
+/* ===== Actions (theme toggle + auth buttons) ===== */
+.navbar__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.theme-toggle {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: var(--font-size-lg);
+  padding: var(--space-xs);
+  line-height: 1;
+}
+
+.btn {
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  text-decoration: none;
+  font-family: var(--font-family-base);
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+.btn--outline {
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  background: transparent;
+}
+
+.btn--outline:hover {
+  background: var(--color-bg-muted);
+}
+
+.btn--filled {
+  color: var(--color-white);
+  background: var(--color-primary);
+  border: 1px solid var(--color-primary);
+}
+
+.btn--filled:hover {
+  background: var(--color-primary-hover);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 640px) {
+  .navbar {
+    flex-wrap: wrap;
+  }
+
+  .navbar__search {
+    order: 3;
+    max-width: 100%;
+    width: 100%;
+  }
+}

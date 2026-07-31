@@ -1,0 +1,30 @@
+<h2>User List</h2>
+
+<div style="display: flex; flex-direction: column; gap: 16px; margin-bottom: 16px">
+  <h3>Move to Product List</h3>
+  <button (click)="ShowProducts()">Click to see Products</button>
+</div>
+
+<input type="text" placeholder="Search user..." [(ngModel)]="searchText" />
+
+@if (loading) {
+  <div>Loading...</div>
+}
+
+@if (errorMessage) {
+  <div>{{ errorMessage }}</div>
+}
+
+@if (!loading && filteredUsers.length === 0) {
+  <div>No users found</div>
+}
+
+@for (user of filteredUsers; track user.id) {
+  <div>
+    <h3>{{ user.name }}</h3>
+
+    <p>{{ user.email }}</p>
+
+    <p>{{ user.phone }}</p>
+  </div>
+}
