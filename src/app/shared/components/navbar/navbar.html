@@ -24,7 +24,14 @@
       }
     </button>
 
-    <a routerLink="/login" class="btn btn--outline">Log In</a>
-    <a routerLink="/signup" class="btn btn--filled">Sign Up</a>
+    @if (authService.isLoggedIn()) {
+      <a routerLink="/cart" class="cart-link" aria-label="Cart">
+        🛒 <span class="cart-count">{{ cartItems.length }}</span>
+      </a>
+      <button type="button" class="btn btn--outline" (click)="logout()">Log Out</button>
+    } @else {
+      <a routerLink="/login" class="btn btn--outline">Log In</a>
+      <a routerLink="/signup" class="btn btn--filled">Sign Up</a>
+    }
   </div>
 </nav>

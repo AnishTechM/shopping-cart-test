@@ -1,9 +1,8 @@
 import { Routes } from '@angular/router';
-import { Login } from './components/login/login';
-import { SingleProduct } from './components/single-product/single-product';
+import { Login } from './features/auth/login/login';
+import { ProductList } from './features/products/product-list/product-list';
 
 export const routes: Routes = [
-  { path: '', component: SingleProduct }, // temporary — see note below
+  { path: '', component: ProductList },
   { path: 'login', component: Login },
-  { path: 'products', component: SingleProduct },
 ];
