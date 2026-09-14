@@ -3,10 +3,11 @@ import { Router } from '@angular/router';
 import { form, FormField, required, email, minLength } from '@angular/forms/signals';
 import { CartService } from '../../../core/services/cart';
 import { AuthService } from '../../../core/services/auth';
+import { Button } from '../../../shared/components/button/button';
 
 @Component({
   selector: 'app-login',
-  imports: [FormField],
+  imports: [FormField, Button],
   templateUrl: './login.html',
   styleUrl: './login.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

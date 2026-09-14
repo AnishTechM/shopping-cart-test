@@ -1,0 +1,42 @@
+.btn {
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn--filled {
+  background: #111827;
+  color: #fff;
+}
+.btn--filled:not(:disabled):hover {
+  background: #1f2937;
+}
+
+.btn--outline {
+  background: transparent;
+  color: #111827;
+  border-color: #111827;
+}
+.btn--outline:not(:disabled):hover {
+  background: #f3f4f6;
+}
+
+.btn--ghost {
+  background: transparent;
+  color: #111827;
+  border-color: transparent;
+}
+.btn--ghost:not(:disabled):hover {
+  background: #f3f4f6;
+}

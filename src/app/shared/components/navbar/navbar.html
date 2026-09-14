@@ -10,25 +10,31 @@
       type="text"
       placeholder="Search products..."
       [(ngModel)]="searchQuery"
-      (keyup.enter)="onSearch()"
+      (ngModelChange)="onSearchInput($event)"
     />
-    <button type="button" (click)="onSearch()" aria-label="Search">🔍</button>
+    @if (searchQuery) {
+      <button type="button" class="search-clear" (click)="clearSearch()" aria-label="Clear search">
+        ✕
+      </button>
+    } @else {
+      <span aria-hidden="true">🔍</span>
+    }
   </div>
 
   <div class="navbar__actions">
-    <button type="button" class="theme-toggle" (click)="themeService.toggleTheme()">
+    <app-button variant="ghost" (clicked)="themeService.toggleTheme()">
       @if (themeService.theme() === 'light') {
         🌙
       } @else {
         ☀️
       }
-    </button>
+    </app-button>
 
     @if (authService.isLoggedIn()) {
       <a routerLink="/cart" class="cart-link" aria-label="Cart">
         🛒 <span class="cart-count">{{ cartItems.length }}</span>
       </a>
-      <button type="button" class="btn btn--outline" (click)="logout()">Log Out</button>
+      <app-button variant="outline" (clicked)="logout()">Log Out</app-button>
     } @else {
       <a routerLink="/login" class="btn btn--outline">Log In</a>
       <a routerLink="/signup" class="btn btn--filled">Sign Up</a>

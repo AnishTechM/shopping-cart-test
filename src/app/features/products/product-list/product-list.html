@@ -9,8 +9,12 @@
     <p class="product-list__loading">Loading products...</p>
   }
 
+  @if (!errorMessage && products.length > 0 && filteredProducts.length === 0) {
+    <p class="product-list__empty">No products match your search.</p>
+  }
+
   <div class="product-list__grid">
-    @for (product of products; track product.id) {
+    @for (product of filteredProducts; track product.id) {
       <app-product-card [product]="product" (addToCart)="addToCart($event)" />
     }
   </div>

@@ -49,14 +49,32 @@
   color: var(--color-text-muted);
 }
 
-.navbar__search button {
+.navbar__search button,
+.navbar__search span[aria-hidden] {
   border: none;
   background: transparent;
-  cursor: pointer;
   color: var(--color-text-muted);
   display: flex;
   align-items: center;
+  justify-content: center;
   font-size: var(--font-size-base);
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  margin-right: var(--space-xs);
+}
+
+.navbar__search button {
+  cursor: pointer;
+  border-radius: var(--radius-sm, 4px);
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+.navbar__search .search-clear:hover {
+  background: var(--color-border);
+  color: var(--color-text);
 }
 
 /* ===== Actions (theme toggle + auth buttons) ===== */

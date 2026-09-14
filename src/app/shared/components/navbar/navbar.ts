@@ -5,10 +5,12 @@ import { ThemeService } from '../../../core/services/theme';
 import { CartService } from '../../../core/services/cart';
 import { Product } from '../../interfaces/products.interface';
 import { AuthService } from '../../../core/services/auth';
+import { Button } from '../button/button';
+import { SearchService } from '../../../core/services/search';
 
 @Component({
   selector: 'app-navbar',
-  imports: [FormsModule, RouterLink],
+  imports: [FormsModule, RouterLink, Button],
   templateUrl: './navbar.html',
   styleUrl: './navbar.css',
 })
@@ -16,6 +18,7 @@ export class Navbar implements OnInit {
   themeService = inject(ThemeService);
   authService = inject(AuthService);
   private cartService = inject(CartService);
+  private searchService = inject(SearchService);
 
   searchQuery = '';
   cartItems: Product[] = [];
@@ -26,11 +29,13 @@ export class Navbar implements OnInit {
     });
   }
 
-  onSearch(): void {
-    const query = this.searchQuery.trim();
-    if (query) {
-      console.log('Searching for:', query);
-    }
+  onSearchInput(value: string): void {
+    this.searchService.setQuery(value);
+  }
+
+  clearSearch(): void {
+    this.searchQuery = '';
+    this.searchService.setQuery('');
   }
 
   logout(): void {
