@@ -8,6 +8,7 @@ import { ThemeService } from '../../../core/services/theme';
 import { CartService } from '../../../core/services/cart';
 import { AuthService } from '../../../core/services/auth';
 import { Product } from '../../interfaces/products.interface';
+import { SearchService } from '../../../core/services/search';
 
 describe('Navbar', () => {
   let component: Navbar;
@@ -93,18 +94,28 @@ describe('Navbar', () => {
   });
 
   describe('search', () => {
-    it('should not log when the query is empty', () => {
-      spyOn(console, 'log');
-      component.searchQuery = '   ';
-      component.onSearch();
-      expect(console.log).not.toHaveBeenCalled();
+    let searchServiceMock: any;
+
+    beforeEach(() => {
+      // Inject the search service from our testing configuration to track spy calls
+      searchServiceMock = TestBed.inject(SearchService);
+      spyOn(searchServiceMock, 'setQuery');
     });
 
-    it('should log the trimmed query when non-empty', () => {
-      spyOn(console, 'log');
-      component.searchQuery = '  shoes  ';
-      component.onSearch();
-      expect(console.log).toHaveBeenCalledWith('Searching for:', 'shoes');
+    it('should update the search service query when input changes', () => {
+      const searchString = 'shoes';
+      component.onSearchInput(searchString);
+
+      // Asserts that your component successfully delegates the keyword to your SearchService
+      expect(searchServiceMock.setQuery).toHaveBeenCalledWith(searchString);
+    });
+
+    it('should clear the search input string and reset the search service state', () => {
+      component.searchQuery = 'jacket';
+      component.clearSearch();
+
+      expect(component.searchQuery).toBe('');
+      expect(searchServiceMock.setQuery).toHaveBeenCalledWith('');
     });
   });
 
